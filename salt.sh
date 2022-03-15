@@ -13,7 +13,7 @@ echo -e "\n\033[0;31mNeed a password"
 exit 1
 fi
 
-printf "\n\n\n\033[0;31m███╗   ███╗ ██████╗ \n████╗ ████║██╔═══██╗\n██╔████╔██║██║   ██║\n██║╚██╔╝██║██║▄▄ ██║\n██║ ╚═╝ ██║╚██████╔╝\n╚═╝     ╚═╝ ╚══▀▀═╝ \n\n\n\n\033[0;33m███████╗████████╗██████╗ \n██╔════╝╚══██╔══╝██╔══██╗\n█████╗     ██║   ██████╔╝\n██╔══╝     ██║   ██╔═══╝ \n██║        ██║   ██║     \n╚═╝        ╚═╝   ╚═╝     \n"
+printf "\n\n\n\033[0;31m███╗   ███╗ ██████╗ \n████╗ ████║██╔═══██╗\n██╔████╔██║██║   ██║\n██║╚██╔╝██║██║▄▄ ██║\n██║ ╚═╝ ██║╚██████╔╝\n╚═╝     ╚═╝ ╚══▀▀═╝ \n"
 
 function vsftpd {
 sudo apt install vsftpd -y > /dev/null 2>&1
@@ -53,6 +53,7 @@ then
 fi
 }
 v_vsftpd=0
+printf "\033[0;33m"
 while true; do
     read -p "Install FTP?" yn
     case $yn in
@@ -61,8 +62,10 @@ while true; do
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
+printf "\033[m"
 if [ "$v_vsftpd" -eq 1 ]
 then
+printf "\n\n\n\033[0;33m███████╗████████╗██████╗ \n██╔════╝╚══██╔══╝██╔══██╗\n█████╗     ██║   ██████╔╝\n██╔══╝     ██║   ██╔═══╝ \n██║        ██║   ██║     \n╚═╝        ╚═╝   ╚═╝     \n"
 printf "\033[0;33m\nInstall FTP..."
 until vsftpd
 do
@@ -81,6 +84,7 @@ echo -e "anonymous_enable=NO\nwrite_enable=YES\nlocal_umask=022\ndirmessage_enab
 chmod -R 766 /home/$USER/FTP
 fi
 v_mysql=0
+printf "\033[0;33m"
 while true; do
     read -p "Install MySQL?" yn
     case $yn in
@@ -89,6 +93,7 @@ while true; do
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
+printf "\033[m"
 if [ "$v_mysql" -eq 1 ]
 then
 printf "\n\n\n\n\033[0;33m███╗   ███╗██╗   ██╗███████╗ ██████╗ ██╗     \n████╗ ████║╚██╗ ██╔╝██╔════╝██╔═══██╗██║     \n██╔████╔██║ ╚████╔╝ ███████╗██║   ██║██║     \n██║╚██╔╝██║  ╚██╔╝  ╚════██║██║▄▄ ██║██║     \n██║ ╚═╝ ██║   ██║   ███████║╚██████╔╝███████╗\n╚═╝     ╚═╝   ╚═╝   ╚══════╝ ╚══▀▀═╝ ╚══════╝\n\033[m"
@@ -127,6 +132,7 @@ done
 printf "\n\033[0;32mPHP-MySQL Install done!\033[m\n"
 fi
 v_pihole=0
+printf "\033[0;33m"
 while true; do
     read -p "Install PiHOLE?" yn
     case $yn in
@@ -135,6 +141,7 @@ while true; do
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
+printf "\033[m"
 if [ "$v_pihole" -eq 1 ]
 then
 printf "\033[0;33m\nInstall Pi-Hole\n\033[m"
@@ -152,6 +159,7 @@ sudo phpenmod mysqli
 fi
 
 v_samba=0
+printf "\033[0;33m"
 while true; do
     read -p "Install SAMBA?" yn
     case $yn in
@@ -160,6 +168,7 @@ while true; do
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
+printf "\033[m"
 if [ "$v_samba" -eq 1 ]
 then
 sudo apt-get install samba samba-common-bin
@@ -175,6 +184,7 @@ fi
 sudo apt update
 sudo apt upgrade -y
 
+printf "\033[0;33m"
 while true; do
     read -p "Reboot?" yn
     case $yn in
@@ -183,4 +193,4 @@ while true; do
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
-
+printf "\033[m"
