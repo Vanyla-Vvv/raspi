@@ -114,6 +114,17 @@ printf "\033[0;33m\nInstall phpmyadmin\n\033[m"
 sudo apt install phpmyadmin -y
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 sudo phpenmod mysqli
+
+sudo apt-get install samba samba-common-bin
+mkdir /home/pi/FTP /home/pi/FTP/manga
+sudo chmod 1766 -R /home/pi/FTP /home/pi/FTP/manga
+sudo cp /etc/samba/smb.conf -R /etc/samba/smb.conf.old
+sudo rm -R /etc/samba/smb.conf
+curl https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/smb.conf | sudo tee /etc/samba/smb.conf > /dev/null
+sudo smbpasswd -a pi
+sudo systemctl restart smbd
+
+#Reboot
 sudo apt update
 sudo apt upgrade -y
 sudo reboot
