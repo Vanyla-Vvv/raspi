@@ -52,7 +52,17 @@ then
   sleep 5
 fi
 }
-
+v_vsftpd=0
+while true; do
+    read -p "Install FTP?" yn
+    case $yn in
+        [Yy]* ) v_vsftpd=1;;
+        [Nn]* ) v_vsftpd=0;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+if [ "$v_vsftpd" -eq 1 ]
+then
 printf "\033[0;33m\nInstall FTP..."
 until vsftpd
 do
@@ -68,8 +78,19 @@ done
 mkdir -p /home/$USER/FTP
 echo -e "anonymous_enable=NO\nwrite_enable=YES\nlocal_umask=022\ndirmessage_enable=YES\nxferlog_enable=YES\nconnect_from_port_20=YES\nchroot_local_user=YES\nlisten=YES\nuser_sub_token=\$USER\nlocal_root=/home/\$USER/FTP" | sudo tee /etc/vsftpd.conf > /dev/null
 
-chmod -R 666 /home/$USER/FTP
-
+chmod -R 766 /home/$USER/FTP
+fi
+v_mysql=0
+while true; do
+    read -p "Install MySQL?" yn
+    case $yn in
+        [Yy]* ) v_mysql=1;;
+        [Nn]* ) v_mysql=0;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+if [ "$v_mysql" -eq 1 ]
+then
 printf "\n\n\n\n\033[0;33m███╗   ███╗██╗   ██╗███████╗ ██████╗ ██╗     \n████╗ ████║╚██╗ ██╔╝██╔════╝██╔═══██╗██║     \n██╔████╔██║ ╚████╔╝ ███████╗██║   ██║██║     \n██║╚██╔╝██║  ╚██╔╝  ╚════██║██║▄▄ ██║██║     \n██║ ╚═╝ ██║   ██║   ███████║╚██████╔╝███████╗\n╚═╝     ╚═╝   ╚═╝   ╚══════╝ ╚══▀▀═╝ ╚══════╝\n\033[m"
 
 function mariadb {
@@ -104,17 +125,43 @@ do
 done
 
 printf "\n\033[0;32mPHP-MySQL Install done!\033[m\n"
+fi
+v_pihole=0
+while true; do
+    read -p "Install PiHOLE?" yn
+    case $yn in
+        [Yy]* ) v_pihole=1;;
+        [Nn]* ) v_pihole=0;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+if [ "$v_pihole" -eq 1 ]
+then
 printf "\033[0;33m\nInstall Pi-Hole\n\033[m"
 
 curl -sSL https://install.pi-hole.net | bash
 sudo pihole -a -p ${1}
 printf "\n\033[0;32mPi-Hole Install done!\033[m\n"
-
+fi
+if [ "$v_mysql" -eq 1 ]
+then
 printf "\033[0;33m\nInstall phpmyadmin\n\033[m"
 sudo apt install phpmyadmin -y
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 sudo phpenmod mysqli
+fi
 
+v_samba=0
+while true; do
+    read -p "Install SAMBA?" yn
+    case $yn in
+        [Yy]* ) v_samba=1;;
+        [Nn]* ) v_samba=0;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+if [ "$v_samba" -eq 1 ]
+then
 sudo apt-get install samba samba-common-bin
 mkdir /home/pi/FTP /home/pi/FTP/manga
 sudo chmod 1766 -R /home/pi/FTP /home/pi/FTP/manga
@@ -123,8 +170,17 @@ sudo rm -R /etc/samba/smb.conf
 curl https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/smb.conf | sudo tee /etc/samba/smb.conf > /dev/null
 sudo smbpasswd -a pi
 sudo systemctl restart smbd
-
+fi
 #Reboot
 sudo apt update
 sudo apt upgrade -y
-sudo reboot
+
+while true; do
+    read -p "Reboot?" yn
+    case $yn in
+        [Yy]* ) sudo reboot; exit;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+
