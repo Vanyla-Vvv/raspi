@@ -3,5 +3,5 @@
 ###### Script
 
 ```
-rm -R salt.sh | bash salt.sh (Password) | wget -O salt.sh https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh 
+wget -O salt.sh https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh | sleep 5 | sudo bash salt.sh (Password)
 ```
