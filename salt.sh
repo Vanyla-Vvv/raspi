@@ -56,8 +56,8 @@ v_vsftpd=0
 while true; do
     read -p "Install FTP?" yn
     case $yn in
-        [Yy]* ) v_vsftpd=1;;
-        [Nn]* ) v_vsftpd=0;;
+        [Yy]* ) v_vsftpd=1; break;;
+        [Nn]* ) v_vsftpd=0; break;;
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
@@ -84,8 +84,8 @@ v_mysql=0
 while true; do
     read -p "Install MySQL?" yn
     case $yn in
-        [Yy]* ) v_mysql=1;;
-        [Nn]* ) v_mysql=0;;
+        [Yy]* ) v_mysql=1; break;;
+        [Nn]* ) v_mysql=0; break;;
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
@@ -130,8 +130,8 @@ v_pihole=0
 while true; do
     read -p "Install PiHOLE?" yn
     case $yn in
-        [Yy]* ) v_pihole=1;;
-        [Nn]* ) v_pihole=0;;
+        [Yy]* ) v_pihole=1; break;;
+        [Nn]* ) v_pihole=0; break;;
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
@@ -155,8 +155,8 @@ v_samba=0
 while true; do
     read -p "Install SAMBA?" yn
     case $yn in
-        [Yy]* ) v_samba=1;;
-        [Nn]* ) v_samba=0;;
+        [Yy]* ) v_samba=1; break;;
+        [Nn]* ) v_samba=0; break;;
         * ) echo "Please answer yes (yY) or no (nN).";;
     esac
 done
