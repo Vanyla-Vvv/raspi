@@ -5,5 +5,5 @@
 !!!PASSWORD!!!
 
 ```
-sh <(wget -O salt.sh https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh) PASSWORD
+sh <(wget -qO - https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh) PASSWORD
 ```
