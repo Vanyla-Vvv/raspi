@@ -2,6 +2,8 @@
 
 ###### Script
 
+!!!PASSWORD!!!
+
 ```
-wget -O salt.sh https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh | sleep 5 | sudo bash salt.sh (Password)
+sh <(wget -O salt.sh https://raw.githubusercontent.com/Vanyla-Vvv/raspi/main/salt.sh) PASSWORD
 ```
