@@ -17,7 +17,7 @@ if [[ "${1}" == "PASSWORD" ]]
 then
 ${1} = date +%s | sha256sum | base64 | head -c 32
 echo -e "\n\033[0;31mPassword generated: ${1} and file: password"
-sudo nano ${1} > ./password>&1
+echo -e "${1}" | sudo tee ./password > /dev/null
 fi
 printf "\n\n\n\033[0;31m███╗   ███╗ ██████╗ \n████╗ ████║██╔═══██╗\n██╔████╔██║██║   ██║\n██║╚██╔╝██║██║▄▄ ██║\n██║ ╚═╝ ██║╚██████╔╝\n╚═╝     ╚═╝ ╚══▀▀═╝ \n"
 
@@ -137,6 +137,28 @@ done
 
 printf "\n\033[0;32mPHP-MySQL Install done!\033[m\n"
 fi
+
+
+v_nordvpn=0
+printf "\033[0;33m"
+while true; do
+    read -p "Install Nord VPN?" yn
+    case $yn in
+        [Yy]* ) v_nordvpn=1; break;;
+        [Nn]* ) v_nordvpn=0; break;;
+        * ) echo "Please answer yes (yY) or no (nN).";;
+    esac
+done
+printf "\033[m"
+if [ "$v_nordvpn" -eq 1 ]
+then
+printf "\033[0;33m\nInstall Nord VPN\n\033[m"
+
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+
+printf "\n\033[0;32mNord VPN Install done! \033[m\n"
+fi
+
 v_pihole=0
 printf "\033[0;33m"
 while true; do
@@ -181,26 +203,6 @@ printf "\n\033[0;32mRaspAP Install done! Please set up RaspAP!!! \033[m\n"
 fi
 fi
 
-v_nordvpn=0
-printf "\033[0;33m"
-while true; do
-    read -p "Install Nord VPN?" yn
-    case $yn in
-        [Yy]* ) v_nordvpn=1; break;;
-        [Nn]* ) v_nordvpn=0; break;;
-        * ) echo "Please answer yes (yY) or no (nN).";;
-    esac
-done
-printf "\033[m"
-if [ "$v_nordvpn" -eq 1 ]
-then
-printf "\033[0;33m\nInstall Nord VPN\n\033[m"
-
-sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
-
-
-printf "\n\033[0;32mNord VPN Install done! \033[m\n"
-fi
 
 if [ "$v_mysql" -eq 1 ]
 then
