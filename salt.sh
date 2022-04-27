@@ -12,7 +12,7 @@ then
 echo -e "\n\033[0;31mNeed a password"
 exit 1
 fi
-if [[ ${a} == "PASSWORD" ]]
+if [[ ${1} == "PASSWORD" ]]
 then
 ${1} = date +%s | sha256sum | base64 | head -c 32
 echo -e "\n\033[0;31mPassword generated: ${1} and file: password"
