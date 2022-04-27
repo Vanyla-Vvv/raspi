@@ -13,11 +13,11 @@ echo -e "\n\033[0;31mNeed a password"
 exit 1
 fi
 
-if [[ "${1}" == "PASSWORD" ]]
+if [ "${1}" -eq "PASSWORD" ]
 then
 ${1} = date +%s | sha256sum | base64 | head -c 32
 echo -e "\n\033[0;31mPassword generated: ${1} and file: password"
-echo -e "${1}" | sudo tee ./password > /dev/null
+echo -e "${1}" | sudo tee ~/password > /dev/null
 fi
 printf "\n\n\n\033[0;31m███╗   ███╗ ██████╗ \n████╗ ████║██╔═══██╗\n██╔████╔██║██║   ██║\n██║╚██╔╝██║██║▄▄ ██║\n██║ ╚═╝ ██║╚██████╔╝\n╚═╝     ╚═╝ ╚══▀▀═╝ \n"
 
