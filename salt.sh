@@ -1,11 +1,4 @@
 #!/bin/bash
-#RED="\033[0;31m"
-#GREEN="\033[0;32m"
-#YELLOW="\033[0;33m"
-#RASPBERRY="\033[0;35m"
-#ERROR="\033[1;37;41m"
-#RESET="\033[m"
-#!/bin/bash
 
 if [ -z "${1}" ]
 then
@@ -247,3 +240,10 @@ while true; do
     esac
 done
 printf "\033[m"
+
+#RED="\033[0;31m"
+#GREEN="\033[0;32m"
+#YELLOW="\033[0;33m"
+#RASPBERRY="\033[0;35m"
+#ERROR="\033[1;37;41m"
+#RESET="\033[m"
